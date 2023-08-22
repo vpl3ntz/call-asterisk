@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use PAMI\Client\Exception\ClientException;
-use PAMI\Client\Impl\ClientImpl as PamiClient;
+use PAMI\Client\Impl\ClientImpl;
 
 class ListenerCommand extends Command
 {
@@ -21,8 +21,6 @@ class ListenerCommand extends Command
      * @var string
      */
     protected $description = 'Command description';
-
-    protected $pmiClient;
 
     private const PAMI_CLIENT_OPTIONS  = [
         'host' => '127.0.0.1',
@@ -52,8 +50,8 @@ class ListenerCommand extends Command
      */
     public function handle(): void
     {
-        $this->pmiClient = (new PamiClient(self::PAMI_CLIENT_OPTIONS));
-        $this->pmiClient->open();
-        $this->pmiClient->close();
+        $pmiClient = (new ClientImpl(self::PAMI_CLIENT_OPTIONS));
+        $pmiClient->open();
+        $pmiClient->close();
     }
 }
