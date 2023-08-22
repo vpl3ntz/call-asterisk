@@ -18,8 +18,8 @@ class ClicktocallController extends Controller
         'host' => '127.0.0.1',
         'scheme' => 'tcp://',
         'port' => '5038',
-        'username' => 'vpbrasilfone',
-        'secret' => 'vpbsf',
+        'username' => 'USERNAME',// manager.conf
+        'secret' => 'PASSWORD',// manager.conf
         'connect_timeout' => 60000,
         'read_timeout' => 60000
     ];
