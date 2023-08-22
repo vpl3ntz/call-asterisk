@@ -20,7 +20,7 @@ class ClicktocallController extends Controller
         'connect_timeout' => 60000,
         'read_timeout' => 60000
     ];
-    public function ctc($extension, $number): string
+    public function connection($extension, $number): string
     {
         try {
             $connection = new ClientImpl(self::PAMI_CLIENT_OPTIONS);

@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/clicktocall/{extension}/{number}',[ClicktocallController::class, 'ctc']);
+Route::get('/clicktocall/{extension}/{number}',[ClicktocallController::class, 'connection']);
