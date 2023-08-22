@@ -11,6 +11,9 @@ use PAMI\Message\Action\LogoffAction;
 
 class ClicktocallController extends Controller
 {
+    /**
+     * Data configuration to connect in Asterisk.
+     */
     private const PAMI_CLIENT_OPTIONS = [
         'host' => '127.0.0.1',
         'scheme' => 'tcp://',
