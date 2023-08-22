@@ -22,11 +22,14 @@ class ListenerCommand extends Command
      */
     protected $description = 'Command description';
 
+    /**
+     * Configuration asterisk.
+     */
     private const PAMI_CLIENT_OPTIONS  = [
         'host' => '127.0.0.1',
         'scheme' => 'tcp://',
         'port' => '5038',
-        'username' => 'vpbrasilfone' ,
+        'username' => 'vpbrasilfone',
         'secret' => 'vpbsf',
         'connect_timeout' => 60000,
         'read_timeout' => 60000
