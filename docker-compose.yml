@@ -1,0 +1,98 @@
+version: '3'
+services:
+    kamailio:
+        container_name: kamailio
+        build:
+            context: .
+            dockerfile: kamailio/dockerfile
+        image: kamailio-vp
+        ports:
+            - "5061:5061"
+        networks:
+            call-asterisk:
+                ipv4_address: 192.168.0.2
+
+    asterisk:
+        container_name: asterisk
+        build:
+            context: .
+            dockerfile: asterisk/dockerfile
+        image: asterisk-vp
+        ports:
+            - "5060:5060"
+        environment:
+            - SYSLOG_LEVEL=1      # Logging
+            - HOSTNAME=astesrik-example.com
+            - PULSE_SERVER=unix:/run/pulse/socket # Use host audio
+            - PULSE_COOKIE=/run/pulse/cookie      # Use host audio
+            - WEBSMSD_PORT=80
+        networks:
+            call-asterisk:
+                ipv4_address: 192.168.0.6
+
+    postgres:
+        container_name: postgres
+        image: postgres:bullseye
+        deploy:
+            resources:
+                limits:
+                    memory: 1024M
+        restart: always
+        environment:
+            - POSTGRES_DB=skeleton_sms
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        volumes:
+            - type: bind
+              source: ../postgres/data/
+              target: /var/lib/postgresql/data
+        networks:
+            call-asterisk:
+                ipv4_address: 192.168.0.3
+
+    redis:
+        container_name: redis
+        image: redis:latest
+        deploy:
+            resources:
+                limits:
+                    memory: 1024M
+        volumes:
+            - type: bind
+              source: ../redis/data/
+              target: /data
+        networks:
+            call-asterisk:
+                ipv4_address: 192.168.0.4
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4:latest
+        deploy:
+            resources:
+                limits:
+                    memory: 1024M
+        restart: always
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=test@test.com
+            - PGADMIN_DEFAULT_USERNAME=postgres
+            - PGADMIN_DEFAULT_PASSWORD=postgres
+        ports:
+            - "80:80"
+        hostname: pgadmin
+        depends_on:
+            - postgres
+        networks:
+            call-asterisk:
+                ipv4_address: 192.168.0.5
+
+networks:
+    call-asterisk:
+        driver: bridge
+        ipam:
+          config:
+            - subnet: 192.168.0.0/16
+              gateway: 192.168.0.1
+
+volumes:
+    asterisk-conf:

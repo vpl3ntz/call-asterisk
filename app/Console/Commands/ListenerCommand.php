@@ -29,8 +29,8 @@ class ListenerCommand extends Command
         'host' => '127.0.0.1',
         'scheme' => 'tcp://',
         'port' => '5038',
-        'username' => 'USERNAME',// manager.conf
-        'secret' => 'PASSWORD', // manager.conf
+        'username' => 'vpbrasilfone',// manager.conf
+        'secret' => 'vpbsf', // manager.conf
         'connect_timeout' => 60000,
         'read_timeout' => 60000
     ];

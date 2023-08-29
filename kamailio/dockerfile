@@ -1,0 +1,19 @@
+FROM debian:bullseye
+ENTRYPOINT ["kamailio", "-DD", "-E"]
+RUN apt update &&\
+    apt upgrade &&\
+    apt install -y kamailio\
+    nano \
+    systemctl \
+    sngrep \
+    rsyslog \
+    kamailio-redis-modules \
+    kamailio-postgres-modules \
+    iputils-ping -y
+
+
+RUN mkdir "./config_kamailio"
+RUN mkdir ".pgpass"
+COPY /kamailio/kamailio.cfg ./config_kamailio
+COPY /kamailio/kamctlrc ./config_kamailio
+
