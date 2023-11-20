@@ -10,7 +10,7 @@ services:
             - "5061:5061"
         networks:
             call-asterisk:
-                ipv4_address: 192.168.0.2
+                ipv4_address: 172.0.0.2
 
     postgres:
         container_name: postgres
@@ -30,7 +30,7 @@ services:
               target: /var/lib/postgresql/data
         networks:
             call-asterisk:
-                ipv4_address: 192.168.0.3
+                ipv4_address: 172.0.0.3
 
     redis:
         container_name: redis
@@ -45,7 +45,7 @@ services:
               target: /data
         networks:
             call-asterisk:
-                ipv4_address: 192.168.0.4
+                ipv4_address: 172.0.0.4
 
     pgadmin:
         container_name: pgadmin
@@ -66,13 +66,13 @@ services:
             - postgres
         networks:
             call-asterisk:
-                ipv4_address: 192.168.0.5
+                ipv4_address: 172.0.0.5
 
 networks:
     call-asterisk:
         driver: bridge
         ipam:
           config:
-            - subnet: 192.168.0.0/16
-              gateway: 192.168.0.1
+            - subnet: 172.0.0.0/16
+              gateway: 172.0.0.1
 
