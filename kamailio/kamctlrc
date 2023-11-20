@@ -5,7 +5,7 @@
 ## will use their internal default values.
 
 ## the SIP domain
-SIP_DOMAIN=192.168.0.2
+SIP_DOMAIN=172.0.0.2
 
 ## chrooted directory
 # CHROOT_DIR="/path/to/chrooted/directory"
@@ -18,7 +18,7 @@ SIP_DOMAIN=192.168.0.2
 DBENGINE=PGSQL
 
 ## database host
-DBHOST=192.168.0.3
+DBHOST=172.0.0.3
 
 ## database port
 DBPORT=5432
@@ -42,7 +42,7 @@ DBROUSER="postgres"
 DBROPW="postgres"
 
 ## database access host (from where is kamctl used)
-# DBACCESSHOST=192.168.0.1
+# DBACCESSHOST=172.0.0.1
 
 ## database super user (for ORACLE this is 'scheme-creator' user)
 # DBROOTUSER="root"

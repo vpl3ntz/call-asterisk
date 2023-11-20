@@ -3,6 +3,7 @@ ENTRYPOINT ["kamailio", "-DD", "-E"]
 RUN apt update -y &&\
     apt upgrade -y &&\
     apt install -y kamailio\
+    procps \
     sngrep \
     nano \
     rsyslog \
