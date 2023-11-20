@@ -26,7 +26,7 @@ services:
             - POSTGRES_PASSWORD=postgres
         volumes:
             - type: bind
-              source: ../postgres/data/
+              source: /home/vpl3ntz/PhpstormProjects/call-asterisk/postgres/data
               target: /var/lib/postgresql/data
         networks:
             call-asterisk:
@@ -41,32 +41,32 @@ services:
                     memory: 1024M
         volumes:
             - type: bind
-              source: ../redis/data/
+              source: /home/vpl3ntz/PhpstormProjects/call-asterisk/redis/data
               target: /data
         networks:
             call-asterisk:
                 ipv4_address: 172.0.0.4
 
-    pgadmin:
-        container_name: pgadmin
-        image: dpage/pgadmin4:latest
-        deploy:
-            resources:
-                limits:
-                    memory: 1024M
-        restart: always
-        environment:
-            - PGADMIN_DEFAULT_EMAIL=test@test.com
-            - PGADMIN_DEFAULT_USERNAME=postgres
-            - PGADMIN_DEFAULT_PASSWORD=postgres
-        ports:
-            - "80:80"
-        hostname: pgadmin
-        depends_on:
-            - postgres
-        networks:
-            call-asterisk:
-                ipv4_address: 172.0.0.5
+#    pgadmin:
+#        container_name: pgadmin
+#        image: dpage/pgadmin4:latest
+#        deploy:
+#            resources:
+#                limits:
+#                    memory: 1024M
+#        restart: always
+#        environment:
+#            - PGADMIN_DEFAULT_EMAIL=test@test.com
+#            - PGADMIN_DEFAULT_USERNAME=postgres
+#            - PGADMIN_DEFAULT_PASSWORD=postgres
+#        ports:
+#            - "80:80"
+#        hostname: pgadmin
+#        depends_on:
+#            - postgres
+#        networks:
+#            call-asterisk:
+#                ipv4_address: 172.0.0.5
 
 networks:
     call-asterisk:
