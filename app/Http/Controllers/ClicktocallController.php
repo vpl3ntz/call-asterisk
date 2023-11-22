@@ -40,6 +40,7 @@ class ClicktocallController extends Controller
             $action->setContext('kamailio');
             $action->setExtension($number);
             $action->setPriority('1');
+            $action->setCallerId('asterisk_api');
 
             $connection->send($action);
             $connection->send(new LogoffAction());
