@@ -11,8 +11,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "marcelog/pami": "^2.0",
-      "ext-http": "*"
+        "chan-sccp/pami": "2.*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
